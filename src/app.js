@@ -80,8 +80,17 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Task 1: Fetch and display meal details in the modal
   // API:- https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}
-  function fetchMealDetails(id) {
-   
+  function fetchMealDetails(mealId) {
+    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
+      .then(response => response.json())
+      .then(data => {
+        modal.innerHTML = ''; 
+        data.meals.forEach(meal => {
+          displayMeal(meal, modal);
+        });
+        modal.classList.contains('hidden')=false;
+      })
+
   }
 
 
@@ -92,11 +101,17 @@ document.addEventListener('DOMContentLoaded', () => {
   
 
   // Task 3: Hide the modal when the close button is clicked (Hint: Add a eventlistener)
+  searchInput.addEventListener('keypress', function (event) {
+    
+  });
 
   
   // Task 4: Clear search input and hide the meal list
   function clearSearchAndHideMeals() {
+  
 
+    
+    
   }
     
 });
